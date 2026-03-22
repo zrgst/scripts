@@ -8,7 +8,8 @@ webapp_menu() {
     webapp_valg=$(echo -e "󰪁 Gemini\n󰊫 Gmail\n Kalender" | $DMENU "Webapps:" )
     case "$webapp_valg" in
         "󰪁 Gemini")
-            notify-send -c "info" "Gemini Webapp" "Du må lage den først..."
+            notify-send -c "info" "Gemini Webapp" "Åpner Gemini Webapp..."
+            ai_agent
             ;;
         "󰊫 Gmail")
             notify-send -c "info" "Gmail" "Du må lage den først!"
