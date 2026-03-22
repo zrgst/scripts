@@ -1,0 +1,97 @@
+#!/bin/bash
+
+# Definerer dmenu-innstillinger (for å matche dwm-look)
+DMENU="dmenu -i -l 10 -p"
+
+# ---------- Webapp meny ----------
+webapp_menu() {
+    webapp_valg=$(echo -e "󰪁 Gemini\n󰊫 Gmail\n Kalender" | $DMENU "Webapps:" )
+    case "$webapp_valg" in
+        "󰪁 Gemini")
+            notify-send -c "info" "Gemini Webapp" "Du må lage den først..."
+            ;;
+        "󰊫 Gmail")
+            notify-send -c "info" "Gmail" "Du må lage den først!"
+            ;;
+        " Kalender")
+            notify-send -c "info" "Google Calendar" "Du må lage den først!"
+            ;;
+    esac
+}
+
+# ---------- System meny ----------
+system_menu() {
+	choice=$(echo -e " Diskstatus\n Minnebruk\n Kernel-versjon\n Tilbake" | $DMENU "System Info:")
+	case "$choice" in
+		" Diskstatus")
+			# Viser diskstatus i dmenu linje (endre til notification senere)
+			notify-send -c "info" "Diskstatus" "$(df -h)"
+            system_menu
+			;;
+		" Minnebruk")
+			# Viser RAM status
+            #status=$(free -h | awk '/^Mem:/ {print "RAM:" $3 " av " $2}')
+			status=$(free -h | awk '/^Mem:/ {print "RAM:  " $3 " / " $2} /^Swap:/ {print "Swap: " $3 " / " $2}')
+			#notify-send -c "info" "Minnebruk:" "$(free -h)"
+			notify-send -c "info" "Minnebruk:" "$status"
+            system_menu
+			;;
+		" Kernel-versjon")
+			notify-send -c "info" "Kernel:" "$(uname -r)"
+            system_menu
+			;;
+		" Tilbake")
+			exec "$0" # Starter scriptet på nytt.
+			;;
+    esac
+}
+
+# ---------- Gaming meny ----------
+gaming_menu() {
+        choice=$(echo -e " Steam\n󱢾 Heroic Games Launcher\n󱓞 Star Citizen\n󰍳 Minecraft\n Roblox\n󰐝 Pokemmo" | $DMENU "Games:" )
+        case "$choice" in
+            " Steam")
+                notify-send -c "info" "Steam" "Starter Steam!"
+                steam
+                ;;
+            "󱢾 Heroic Games Launcher")
+                notify-send -c "info" "Starter Heroic Games Launcher!"
+                heroic
+                ;;
+            " 󱓞 Star Citizen")
+                notify-send -c "info" "Star Citizen" "Du har ikke isntallert dette ennå..."
+                ;;
+            "󰍳 Minecraft")
+                notify-send -c "info" "Minecraft" "Launching Prism Launcher!"
+                prismlauncher
+                ;;
+            " Roblox")
+                notify-send -c "info" "Roblox" "Starter Sober, Roblox launcher for Linux"
+                flatpak run org.vinegarhq.Sober
+                ;;
+            "󰐝 Pokemmo")
+                notify-send -c "info" "Pokemmo" "Starter Pokemmo!!"
+                pokemmo-launcher
+                ;;
+        esac
+}
+
+
+# ---------- Hovedmeny ----------
+main_menu() {
+    choice=$(echo -e "󰵆 Applications\n󱎓 Games\n Webapps\n System Info\n Terminal" | $DMENU "Zrgst Launcher:")
+    case "$choice" in
+        "󰵆 Applications")
+            j4-dmenu-desktop ;;
+        "󱎓 Games")
+            gaming_menu ;;
+        " Webapps")
+            webapp_menu ;;
+        " System Info")
+            system_menu ;;
+        " Terminal")
+            st -e ;;
+    esac
+}
+
+main_menu

@@ -1,0 +1,12 @@
+#!/bin/bash
+# Enkel power-meny for dmenu
+
+chosen=$(printf " Poweroff\n Reboot\n Suspend\n󰈆 Logout\n Cancel" | dmenu -i -p "Action:" -fn "JetBrainsMono Nerd Font:size=14" -nb "#1a1b26" -nf "#c0caf5" -sb "#bb9af7" -sf "#1a1b26")
+
+case "$chosen" in
+    *Poweroff) poweroff ;;
+    *Reboot)   reboot ;;
+    *Suspend)  systemctl suspend ;;
+    *Logout)   pkill dwm ;;
+    *)         exit 1 ;;
+esac
