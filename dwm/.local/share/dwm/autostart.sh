@@ -16,13 +16,7 @@ flameshot &
 # Dreper gamle instanser og starter slstatus 'fresh'
 killall mpd_status 2>/dev/null
 killall mpc; mpc &
-mpd_status &
 
-#Klokke i top-baren
-while true; do
-	xsetroot -name "$(date + '%a %d. %b  %H:%M')"
-	sleep 60
-done &
 
 # 4. Spesifikt for stasjonær/NVIDIA (Valgfritt)
 # Hvis du har flere skjermer, kan du legge til xrandr-oppsett her
