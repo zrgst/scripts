@@ -1,0 +1,16 @@
+#!/bin/bash
+#Skriver musikkstatus til en midlertidig fil
+while true; do
+	artist_title=$(mpc current)
+
+	if [ -n "$artist_title" ]; then
+		echo "$artist_title" > /tmp/mpd_stat
+	else
+		echo "Stoppet." > /tmp/mpd_stat
+	fi
+
+	# Oppdateres hvert 2.sekund for å spare CPU
+	
+	sleep 2
+done
+

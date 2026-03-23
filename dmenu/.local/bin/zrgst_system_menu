@@ -13,9 +13,11 @@ webapp_menu() {
             ;;
         "󰊫 Gmail")
             notify-send -c "info" "Gmail" "Du må lage den først!"
+            gmail_webapp
             ;;
         " Kalender")
             notify-send -c "info" "Google Calendar" "Du må lage den først!"
+            gcal_webapp
             ;;
     esac
 }
