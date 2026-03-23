@@ -91,7 +91,7 @@ main_menu() {
         " Webapps")
             webapp_menu ;;
         " System Info")
-            system_menu ;;
+            sysinfo ;;
         " Terminal")
             st -e ;;
     esac

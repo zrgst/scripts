@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Hent info
+VOLUME=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2*100 "%"}')
+MUSIC=$(mpc current || echo "Ingen musikk spiller...")
+UPTIME=$(uptime -p | sed 's/up //')
+MEMORY=$(free -h | awk '/^Mem:/ {print " RAM:  " $3 " / " $2} /^Swap:/ {print "󰍛 Swap: " $3 " / " $2}')
+CPUTEMP=$(sensors | grep 'Tctl' | awk '{print $2}' | tr -d '+')
+KERNEL=$(uname -r)
+GPU_INFO=$(nvidia-smi --query-gpu=temperature.gpu,memory.used,memory.total --format=csv,noheader,nounits)
+GPU_TEMP=$(echo $GPU_INFO | cut -d',' -f1 | xargs echo -n)
+GPU_VRAM=$(echo $GPU_INFO | awk -F', ' '{print $2 "MB / " $3 "MB"}')
+
+# Vis i en enkel varsling (krever f.eks. 'dunstify' eller 'notify-send')
+notify-send -c "info" "󰣇 System Status" "󰤽 Media:\n󰋄 $MUSIC\n Volum: $VOLUME\n\n System Information:\n Kernel: $KERNEL\n󱎫 Uptime: $UPTIME\n$MEMORY\n CPU-temp: $CPUTEMP\n\nNvidia RTX 4070\n GPU-temp: $GPU_TEMP\n  GPU-minne: $GPU_VRAM"
