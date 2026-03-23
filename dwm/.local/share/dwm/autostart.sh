@@ -14,6 +14,7 @@ dunst &
 flameshot &
 
 # Dreper gamle instanser og starter slstatus 'fresh'
+mpd &
 killall mpd_status 2>/dev/null
 killall mpc; mpc &
 
