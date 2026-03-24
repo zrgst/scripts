@@ -1,0 +1,8 @@
+#!/bin/bash
+# Webapp launcher med Thorium
+URL="https://gmail.google.com"
+PROFILE="$HOME/.config/webapps/gmail"
+CLASS="GmailApp"
+
+# Vi bruker --class så dwm-regelen din treffer
+thorium-browser --app="$URL" --user-data-dir="$PROFILE" --class="
