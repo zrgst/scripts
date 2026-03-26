@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# 1. Tilbaketill strømstyring
+sudo cpupower frequency-set -g powersave
+
+# 2. start opp Picom igjen
+picom -b &
+
+# 3. Sett Nvidia tilbake til auto
+if command -v nvidia-settings &> /dev/null; then
+	nvidia-settings -a "[gpu:0]/GPUPowerMizerMode=0"
+fi
+
+notify-send -c "info" "Game Mode OFF" "Gaming mode er nå av,\nSparer strøm igjen..."
+
+

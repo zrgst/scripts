@@ -79,10 +79,26 @@ gaming_menu() {
         esac
 }
 
+noisetorch_menu() {
+    local options="1. Aktiver\n2. Deaktiver"
+    local choice=$(echo -e "$options" | dmenu -p "Noise Cancellation:" -i)
+
+    case "$choice" in
+        "1. Aktiver")
+            # Starter noisetorch i bakgrunnen (bruker -i for standard input)
+            noisetorch -i && notify-send "NoiseTorch" "Støyreduksjon er aktivert"
+            ;;
+        "2. Deaktiver")
+            # Stopper og fjerner det virtuelle grensesnittet
+            noisetorch -u && notify-send "NoiseTorch" "Støyreduksjon er deaktivert"
+            ;;
+    esac
+}
+
 
 # ---------- Hovedmeny ----------
 main_menu() {
-    choice=$(echo -e "󰵆 Applications\n󱎓 Games\n Webapps\n System Info\n Terminal" | $DMENU "Zrgst Launcher:")
+    choice=$(echo -e "󰵆 Applications\n󱎓 Games\n Webapps\n System Info\n Terminal\n󱡬 Noise Cancelling" | $DMENU "Zrgst Launcher:")
     case "$choice" in
         "󰵆 Applications")
             j4-dmenu-desktop ;;
@@ -94,6 +110,8 @@ main_menu() {
             sysinfo ;;
         " Terminal")
             st -e ;;
+	"󱡬 Noise Cancelling")
+	    noisetorch_menu ;;
     esac
 }
 

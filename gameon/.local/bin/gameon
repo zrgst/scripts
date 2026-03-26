@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# 1. Stopp Compositor
+pkill picom
+
+# 2. Strømstyring (krever 'cpupower' pakken)
+sudo cpupower frequency-set -g performance
+
+# 3. Nvidia settings
+if command -v nvidia-settings &> /dev/null; then
+	nvidia-settings -a "[gpu:0]/GPUPowerMizerMode=1"
+fi
+
+# 4. Start gamemoded (Feral Gamemode) (krever 'gamemoded' pakken)
+if ! pgrep -x "gamemoded" > /dev/null; then
+	gamemoded &
+fi
+
+notify-send -c "info" "Gamemode ON" "Gaming mode er aktivert!\nLykke til!"
+
