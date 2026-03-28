@@ -20,5 +20,6 @@ killall mpc; mpc &
 
 
 # 4. Spesifikt for stasjonær/NVIDIA (Valgfritt)
+xrandr --output DP-0 --mode 2560x1440 --rate 120 --primary
 # Hvis du har flere skjermer, kan du legge til xrandr-oppsett her
 # xrandr --output DP-0 --primary --mode 2560x1440 --rate 144 --output HDMI-0 --right-of DP-0 &
