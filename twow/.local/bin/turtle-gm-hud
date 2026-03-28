@@ -1,0 +1,4 @@
+#!/bin/bash
+# Starter Turtle WoW med GameMode og MangoHud
+# Setter miljøvariabelen direkte for å tvinge MangoHud på
+MANGOHUD=1 gamemoderun lutris lutris:rungame/TurtleWoW
