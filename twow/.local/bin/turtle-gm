@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # Starter Turtle Wow med GameMode
-gamemoderun lutris lutris:rungame/TurtleWow
+gamemoderun lutris lutris:rungame/turtlewow

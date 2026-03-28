@@ -50,8 +50,26 @@ system_menu() {
 }
 
 # ---------- Gaming meny ----------
+twow_menu() {
+	choice=$(echo -e "󰳗 Turtle Wow\n󰳗 Turtle Wow - Mangohud" | $DMENU "Turtle Wow:" )
+	case "$choice" in
+		"󰳗 Turtle Wow")
+                	notify-send -c "info" "Turtle WoW" "Starter Turtle WoW!\nGå til tag 8 for å spille."
+			turtle-gm 
+			;;
+		"󰳗 Turtle Wow - Mangohud")
+                	notify-send -c "info" "Turtle WoW - HUD" "Starter Turtle WoW med Mangohud!\nGå til tag 8 for å spille."
+			turtle-gm-hud
+			;;
+	esac
+
+}
+
+
+
+# ---------- Gaming meny ----------
 gaming_menu() {
-        choice=$(echo -e " Steam\n󱢾 Heroic Games Launcher\n󱓞 Star Citizen\n󰍳 Minecraft\n Roblox\n󰐝 Pokemmo" | $DMENU "Games:" )
+        choice=$(echo -e " Steam\n󱢾 Heroic Games Launcher\n󱓞 Star Citizen\n󰳗 Turtle Wow\n󰍳 Minecraft\n Roblox\n󰐝 Pokemmo" | $DMENU "Games:" )
         case "$choice" in
             " Steam")
                 notify-send -c "info" "Steam" "Starter Steam!"
@@ -60,6 +78,9 @@ gaming_menu() {
             "󱢾 Heroic Games Launcher")
                 notify-send -c "info" "Starter Heroic Games Launcher!"
                 heroic
+                ;;
+            "󰳗 Turtle Wow")
+                twow_menu
                 ;;
             " 󱓞 Star Citizen")
                 notify-send -c "info" "Star Citizen" "Du har ikke isntallert dette ennå..."
