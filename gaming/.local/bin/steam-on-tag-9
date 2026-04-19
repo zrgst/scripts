@@ -1,0 +1,8 @@
+#!/bin/sh
+# ~/.local/bin/steam-on-tag-9
+
+# Lager en engangsregel for neste steam-vindo
+herbstclient rule once class~steam_app_[0-9]+ tag=9 focus=on
+
+# Start selve spillet
+exec "$@"
